@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 const cors = require('cors');
 app.use(cors());
 // Initialize the main project folder
-
+app.use(express.static('dist'))
 PORT = 8080;
 // Setup Server
 const server = app.listen(PORT, listening);
@@ -27,8 +27,10 @@ function listening() {
 
 // Initialize all route with a callback function
 
-// Callback function to complete GET '/all'
-
+// Callback function to complete GET 
+app.get('/', function (req, res) {
+    res.sendFile('dist/index.html');
+});
 
 // Post Route
 
