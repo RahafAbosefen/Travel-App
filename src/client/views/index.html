@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel App</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="">
+            Logo
+        </div>
+        <div class="">
+            navigation
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <form id="holder-form">
+                <div class="holder trip">
+                    <label for="place">My trip to:</label>
+                    <input type="text" id="place" placeholder="Enter location here">
+                </div>
+                <div class="holder Departing">
+                    <label for="date">Departing :</label>
+                    <input type="text" id="date" class="flatpickr js-flatpickr-dateTime" placeholder="YYYY-MM-DD">
+                </div>
+                <button id="generate" type="submit"> Generate </button>
+            </form>
+        </section>
+        <section>
+            <div id="results"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>This is a footer</p>
+    </footer>
+    <script src="/src/client/js/app.js" type="text/javascript"></script>
+</body>
+
+</html>

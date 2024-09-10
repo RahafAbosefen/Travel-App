@@ -1,0 +1,17 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    background-color: #885f9b;
+    color: #fff;
+    align-items: center;
+
+    .logo {
+        font-size: 1.5em;
+    }
+
+    .navigation {
+        display: flex;
+        gap: 1em;
+    }
+}
