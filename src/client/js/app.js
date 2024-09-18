@@ -73,22 +73,4 @@ async function postData(url = '', data = {}) {
     }
 }
 
-
-/* Function to GET Project Data */
-const retrieveData = async () => {
-    const request = await fetch('/all');
-    try {
-        // Transform into JSON
-        const allData = await request.json()
-        console.log(allData)
-        // Write updated data to DOM elements
-        document.getElementById('temp').innerHTML = Math.round(allData.temp) + ' degrees ';
-        document.getElementById('content').innerHTML = allData.feel;
-        document.getElementById("date").innerHTML = allData.date;
-    }
-    catch (error) {
-        console.log("error", error);
-        // appropriately handle the error
-    }
-}
-export { performAction, postData, retrieveData };
+export { performAction, postData };
