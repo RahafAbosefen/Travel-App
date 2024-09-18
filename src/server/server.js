@@ -33,4 +33,15 @@ app.get('/', function (req, res) {
 });
 
 // Post Route
+app.post('/add', (req, res) => {
+    projectData = {
+        country: req.body.countryName,  // Country from client
+        weather: req.body.weather,      // Weather description from client
+        highTemp: req.body.highTemp,  // Temperature from client
+        lowTemp: req.body.lowTemp,
+        image: req.body.image
+    };
 
+    // Respond with the updated projectData
+    res.send(projectData);
+});

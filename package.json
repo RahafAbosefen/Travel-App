@@ -1,7 +1,7 @@
 {
   "name": "travel-app-project",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "node src/server/server.js",
     "build-prod": "webpack --config webpack.prod.js",
