@@ -11,35 +11,31 @@
 <body>
 
     <header>
-        <div class="">
-            Logo
-        </div>
-        <div class="">
-            navigation
-        </div>
+        <img id="logo" alt="logo" class="logo">
+        <h1 class="navigation">Travel Planner</h1>
     </header>
-
-    <main>
-        <section>
-            <form id="holder-form">
-                <div class="holder trip">
-                    <label for="place">My trip to:</label>
+    <main class="container">
+        <section class="form-section">
+            <form id="trip-form">
+                <div class="form-group">
+                    <label for="place">My Trip to:</label>
                     <input type="text" id="place" placeholder="Enter location here">
                 </div>
-                <div class="holder Departing">
-                    <label for="date">Departing :</label>
-                    <input type="date" id="date" class="flatpickr js-flatpickr-dateTime" placeholder="DD-MM-YYYY">
+                <div class="form-group">
+                    <label for="date">Departing:</label>
+                    <input type="date" id="date" placeholder="MM/DD/YYYY">
                 </div>
-                <button id="generate" type="submit"> Generate </button>
+                <button id="generate" type="submit">Save Trip</button>
             </form>
         </section>
-        <section>
-            <div id="results"></div>
+        <section id="trip-results" class="trip-results">
+            <h1><strong>My Trips:</strong></h1>
+            <!-- Trip cards will be inserted here -->
         </section>
     </main>
 
     <footer>
-        <p>This is a footer</p>
+        <p>Discover the best travel destinations and plan your perfect trip with TravelApp.</p>
     </footer>
 </body>
 

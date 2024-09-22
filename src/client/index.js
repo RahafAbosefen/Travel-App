@@ -4,6 +4,9 @@ import { getCoordinates } from './js/geonames';
 import { getFutureWeather } from './js/weatherbit';
 import { cutDwon } from './js/cutDown';
 import { postData } from './js/app';
+import logo from './media/logo.png';
+
+document.getElementById('logo').src = logo;
 
 //sacc styles
 import './styles/resets.scss'
