@@ -1,37 +1,85 @@
-form {
-    border: 1px solid #545454;
-    border-radius: 5px;
-    padding: 1em;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    margin: 1em auto;
+.form-group {
+    margin-bottom: 1.5rem;
 
-    input,
-    button {
-        width: 100%;
-        padding: 0.75em;
-        margin-bottom: 1em;
-        border: 1px solid #ddd;
-        border-radius: 3px;
+    label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+        color: #2b4a53;
     }
 
     input {
-        margin-bottom: 0.5em;
-        padding: 5px 20px;
         width: 100%;
-        line-height: 16px;
-        margin: 10px 0;
+        padding: 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1rem;
+        color: #2b4a53;
     }
 
-    button {
-        background-color: #885f9b;
-        color: #fff;
-        border: none;
-        cursor: pointer;
+}
 
-        &:hover {
-            background-color: #c9a8d8;
+button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #19bcff;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+
+    &:hover {
+        background-color: #2980b9;
+    }
+}
+
+.trip-results {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    width: 80%;
+}
+
+.trip-card {
+    display: flex;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 100%;
+    max-width: 900px;
+    margin: 1rem 0;
+
+    .trip-image {
+        width: 100%;
+
+        img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+    }
+
+    .trip-details {
+        width: 100%;
+        padding: 1.5rem;
+
+        .bold-text {
+            font-weight: bold;
+        }
+
+        h3 {
+            margin-top: 0;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        p {
+            margin: 0.5rem 0;
+            font-size: 1rem;
+            color: #666;
         }
     }
 }

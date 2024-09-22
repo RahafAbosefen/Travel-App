@@ -15,9 +15,7 @@ function performAction(event) {
     console.log("I am working fine");
     const city = document.getElementById('place').value;
     const tripDateInput = document.getElementById('date').value;
-
     const daysUntilTrip = cutDwon(tripDateInput);
-    console.log(`Your trip is in ${daysUntilTrip} days.`);
 
     getCoordinates(city)
         .then(function (data) {
@@ -34,16 +32,28 @@ function performAction(event) {
                                 lowTemp: weatherData.lowTemp, // Min Temperature
                                 image: imageURL // Send image URL
                             });
+                            if (place && date) {
+                                const tripResults = document.getElementById('trip-results');
+                                const tripCard = document.createElement('div');
+                                tripCard.classList.add('trip-card');
 
-                            // Update the results with fetched data
-                            document.getElementById('results').innerHTML = `
-                                <p>My Trip To: ${city},${data.country}</p>
-                                <p>Departing: ${new Date(tripDateInput).toLocaleDateString('en-GB')}</p>
-                                <p>${city},${data.country} is in ${daysUntilTrip} days away.</p>
-                                <p>${weatherData.description} Throught The day.</p>
-                                <p>High-${weatherData.highTemp} °C , Low-${weatherData.lowTemp} °C</p>
-                                <img src="${imageURL}" alt="Image of ${city}">
-                                `;
+                                // Update the results with fetched data
+                                tripCard.innerHTML = `
+                                    <div class="trip-image">
+                                        <img src="${imageURL}" alt="Image of ${city}">
+                                    </div>
+                                    <div class="trip-details">
+                                       <div class="bold-text">
+                                            <h1>My Trip To: ${city},${data.country}</h1>
+                                            <h1>Departing: ${new Date(tripDateInput).toLocaleDateString('en-GB')}</h1>
+                                        </div>
+                                        <p>${city},${data.country} is in ${daysUntilTrip} days away.</p>
+                                        <p>${weatherData.description} Throught The day.</p>
+                                        <p>High-${weatherData.highTemp} °C , Low-${weatherData.lowTemp} °C</p>
+                                    </div>
+                                    `;
+                                tripResults.appendChild(tripCard);
+                            }
                         })
                         .catch(error => {
                             console.log('Error fetching image:', error);
