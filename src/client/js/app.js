@@ -5,26 +5,44 @@ import { getImage } from './pixabay'
 
 //Helper Function 
 import { cutDwon } from "./cutDown";
+import { updateUI } from "./updateUI";
+import { saveTripData } from './tripStorage';
+import { loadSavedTrip } from './tripStorage';
 
 // Event listener to add function to existing HTML DOM element
 document.getElementById('generate').addEventListener('click', performAction);
+// Load saved trip data on page load
+document.addEventListener('DOMContentLoaded', loadSavedTrip);
 
 /* Function called by event listener */
 function performAction(event) {
     event.preventDefault();
-    console.log("I am working fine");
     const city = document.getElementById('place').value;
     const tripDateInput = document.getElementById('date').value;
     const daysUntilTrip = cutDwon(tripDateInput);
-
+    // Create a tripData object to store the data locally and on the server
+    const tripData = {
+        city,
+        country: '',
+        tripDateInput,
+        daysUntilTrip,
+        weatherDescription: '',
+        highTemp: '',
+        lowTemp: '',
+        imageURL: ''
+    };
     getCoordinates(city)
         .then(function (data) {
-            // Fetch the weather data for the trip day
+            tripData.country = data.country;
             getFutureWeather(data.latitude, data.longitude, daysUntilTrip)
                 .then(weatherData => {
+                    tripData.weatherDescription = weatherData.description;
+                    tripData.highTemp = weatherData.highTemp;
+                    tripData.lowTemp = weatherData.lowTemp;
                     getImage(city)
                         .then(imageURL => {
-                            // Post data to server, including weather data
+                            tripData.imageURL = imageURL;
+                            // Post data to the server
                             postData('/add', {
                                 countryName: data.country,
                                 weather: weatherData.description, // Weather description
@@ -32,36 +50,24 @@ function performAction(event) {
                                 lowTemp: weatherData.lowTemp, // Min Temperature
                                 image: imageURL // Send image URL
                             });
-                            if (place && date) {
-                                const tripResults = document.getElementById('trip-results');
-                                const tripCard = document.createElement('div');
-                                tripCard.classList.add('trip-card');
-
-                                // Update the results with fetched data
-                                tripCard.innerHTML = `
-                                    <div class="trip-image">
-                                        <img src="${imageURL}" alt="Image of ${city}">
-                                    </div>
-                                    <div class="trip-details">
-                                       <div class="bold-text">
-                                            <h1>My Trip To: ${city},${data.country}</h1>
-                                            <h1>Departing: ${new Date(tripDateInput).toLocaleDateString('en-GB')}</h1>
-                                        </div>
-                                        <p>${city},${data.country} is in ${daysUntilTrip} days away.</p>
-                                        <p>${weatherData.description} Throught The day.</p>
-                                        <p>High-${weatherData.highTemp} °C , Low-${weatherData.lowTemp} °C</p>
-                                    </div>
-                                    `;
-                                tripResults.appendChild(tripCard);
-                            }
+                            // Store tripData in Local Storage
+                            saveTripData(tripData);
+                            // Update UI with tripData
+                            updateUI(tripData);
+                            // Clear input fields
+                            document.getElementById('place').value = '';
+                            document.getElementById('date').value = '';
                         })
                         .catch(error => {
                             console.log('Error fetching image:', error);
                         });
+                })
+                .catch(error => {
+                    console.log('Error fetching weather:', error);
                 });
         })
         .catch(error => {
-            console.log('Error:', error);
+            console.log('Error fetching coordinates:', error);
         });
 }
 
