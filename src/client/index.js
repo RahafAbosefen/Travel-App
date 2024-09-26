@@ -4,6 +4,11 @@ import { getCoordinates } from './js/geonames';
 import { getFutureWeather } from './js/weatherbit';
 import { cutDwon } from './js/cutDown';
 import { postData } from './js/app';
+import { updateUI } from './js/updateUI';
+import { saveTripData } from './js/tripStorage';
+import { loadSavedTrip } from './js/tripStorage';
+import { deleteTrip } from './js/deleteTrip';
+
 import logo from './media/logo.png';
 
 document.getElementById('logo').src = logo;
@@ -21,5 +26,9 @@ export {
     getCoordinates,
     getFutureWeather,
     cutDwon,
-    postData
+    postData,
+    updateUI,
+    saveTripData,
+    loadSavedTrip,
+    deleteTrip
 }
