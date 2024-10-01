@@ -7,12 +7,6 @@ import { getImage } from './pixabay'
 import { cutDwon } from "./cutDown";
 import { updateUI } from "./updateUI";
 import { saveTripData } from './tripStorage';
-import { loadSavedTrip } from './tripStorage';
-
-// Event listener to add function to existing HTML DOM element
-document.getElementById('generate').addEventListener('click', performAction);
-// Load saved trip data on page load
-document.addEventListener('DOMContentLoaded', loadSavedTrip);
 
 /* Function called by event listener */
 function performAction(event) {

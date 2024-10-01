@@ -37,6 +37,20 @@
     <footer>
         <p>Discover the best travel destinations and plan your perfect trip with TravelApp.</p>
     </footer>
+    <script>
+        // Check that service workers are supported
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then((reg) => {
+                        console.log('Service Worker registered! 😎', reg);
+                    })
+                    .catch((err) => {
+                        console.log('Service Worker registration failed 😥', err);
+                    });
+            });
+        }
+    </script>
 </body>
 
 </html>

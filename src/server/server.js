@@ -8,6 +8,7 @@ const app = express();
 /* Dependencies */
 /* Middleware*/
 const bodyParser = require('body-parser');
+const mockAPIResponse = require('./mockAPI.js')
 //Here we are configuring express to use body-parser as middle-ware.
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -31,7 +32,10 @@ function listening() {
 app.get('/', function (req, res) {
     res.sendFile('dist/index.html');
 });
-
+//GET test Rout
+app.get('/test', function (req, res) {
+    res.send(mockAPIResponse)
+});
 // Post Route
 app.post('/add', (req, res) => {
     projectData = {
