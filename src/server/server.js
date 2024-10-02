@@ -1,51 +1,74 @@
 // Setup empty JS object to act as endpoint for all routes
-projectData = {};
+let projectData = {};
 
 // Require Express to run server and routes
 const express = require('express');
+
 // Start up an instance of app
 const app = express();
-/* Dependencies */
+
 /* Middleware*/
 const bodyParser = require('body-parser');
-const mockAPIResponse = require('./mockAPI.js')
-//Here we are configuring express to use body-parser as middle-ware.
+const cors = require('cors');
+const mockAPIResponse = require('./mockAPI.js');
+
+// Use body-parser as middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Cors for cross origin allowance
-const cors = require('cors');
+// Use CORS for cross-origin allowance
 app.use(cors());
+
 // Initialize the main project folder
-app.use(express.static('dist'))
-PORT = 8080;
-// Setup Server
-const server = app.listen(PORT, listening);
-// Callback to debug
-function listening() {
-    console.log(`Server Runing on http://localhost:${PORT}`);
-}
+app.use(express.static('dist'));
+
+// Define the port using const
+const PORT = 8080;
+
+// Setup Server and listening callback (using arrow function)
+app.listen(
+    PORT,
+    () => {
+        console.log(`Server running on http://localhost:${PORT}`);
+    }
+);
 
 // Initialize all route with a callback function
 
-// Callback function to complete GET 
-app.get('/', function (req, res) {
-    res.sendFile('dist/index.html');
-});
-//GET test Rout
-app.get('/test', function (req, res) {
-    res.send(mockAPIResponse)
-});
-// Post Route
-app.post('/add', (req, res) => {
-    projectData = {
-        country: req.body.countryName,  // Country from client
-        weather: req.body.weather,      // Weather description from client
-        highTemp: req.body.highTemp,  // Temperature from client
-        lowTemp: req.body.lowTemp,
-        image: req.body.image
-    };
+// GET Route to serve the homepage
+app.get(
+    '/',
+    (req, res) => {
+        res.sendFile('dist/index.html');
+    }
+);
 
-    // Respond with the updated projectData
-    res.send(projectData);
-});
+// GET test route
+app.get(
+    '/test',
+    (req, res) => {
+        res.send(mockAPIResponse);
+    }
+);
+
+// POST Route to receive and update project data
+app.post(
+    '/add',
+    (req, res) => {
+        projectData = {
+            // Country from client
+            country: req.body.countryName,
+            // Weather description from client
+            weather: req.body.weather,
+            // High temperature
+            highTemp: req.body.highTemp,
+            // Low temperature
+            lowTemp: req.body.lowTemp,
+            // Image URL
+            image: req.body.image
+        };
+
+        // Respond with the updated projectData
+        res.send(projectData);
+    }
+);
