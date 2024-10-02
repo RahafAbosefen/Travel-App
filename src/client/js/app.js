@@ -1,20 +1,49 @@
-/* import GET Function API */
+// Importing API functions and helpers
+import { cutDown } from "./cutDown";
 import { getCoordinates } from "./geonames";
 import { getFutureWeather } from "./weatherbit";
-import { getImage } from './pixabay'
-
-//Helper Function 
-import { cutDwon } from "./cutDown";
+import { getImage } from "./pixabay";
+import { saveTripData } from "./tripStorage";
 import { updateUI } from "./updateUI";
-import { saveTripData } from './tripStorage';
 
-/* Function called by event listener */
-function performAction(event) {
+
+// Function to POST data 
+const postData = async (url = '', data = {}) => {
+    const res = await fetch(
+        url,
+        {
+            method: 'POST',
+            credentials: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }
+    );
+    try {
+        const newData = await res.json();
+        return newData;
+    } catch (error) {
+        console.log(
+            'Error:',
+            error
+        );
+    }
+};
+
+// Helper function to clear input fields
+const clearForm = () => {
+    document.getElementById('place').value = '';
+    document.getElementById('date').value = '';
+};
+
+// Function called by event listener
+const performAction = (event) => {
     event.preventDefault();
     const city = document.getElementById('place').value;
     const tripDateInput = document.getElementById('date').value;
-    const daysUntilTrip = cutDwon(tripDateInput);
-    // Create a tripData object to store the data locally and on the server
+    const daysUntilTrip = cutDown(tripDateInput);
+
     const tripData = {
         city,
         country: '',
@@ -25,62 +54,42 @@ function performAction(event) {
         lowTemp: '',
         imageURL: ''
     };
-    getCoordinates(city)
-        .then(function (data) {
-            tripData.country = data.country;
-            getFutureWeather(data.latitude, data.longitude, daysUntilTrip)
-                .then(weatherData => {
-                    tripData.weatherDescription = weatherData.description;
-                    tripData.highTemp = weatherData.highTemp;
-                    tripData.lowTemp = weatherData.lowTemp;
-                    getImage(city)
-                        .then(imageURL => {
-                            tripData.imageURL = imageURL;
-                            // Post data to the server
-                            postData('/add', {
-                                countryName: data.country,
-                                weather: weatherData.description, // Weather description
-                                highTemp: weatherData.highTemp, // Max Temperature
-                                lowTemp: weatherData.lowTemp, // Min Temperature
-                                image: imageURL // Send image URL
-                            });
-                            // Store tripData in Local Storage
-                            saveTripData(tripData);
-                            // Update UI with tripData
-                            updateUI(tripData);
-                            // Clear input fields
-                            document.getElementById('place').value = '';
-                            document.getElementById('date').value = '';
-                        })
-                        .catch(error => {
-                            console.log('Error fetching image:', error);
-                        });
-                })
-                .catch(error => {
-                    console.log('Error fetching weather:', error);
-                });
-        })
-        .catch(error => {
-            console.log('Error fetching coordinates:', error);
-        });
-}
 
-/* Function to POST data */
-async function postData(url = '', data = {}) {
-    const res = await fetch(url, {
-        method: 'POST',
-        credentials: 'same-origin',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data)
-    });
-    try {
-        const newData = await res.json();
-        return newData;
-    } catch (error) {
-        console.log('error', error);
-    }
-}
+    getCoordinates(city).
+        then((data) => {
+            tripData.country = data.country;
+            return getFutureWeather(
+                data.latitude,
+                data.longitude,
+                daysUntilTrip
+            );
+        }).
+        then((weatherData) => {
+            tripData.weatherDescription = weatherData.description;
+            tripData.highTemp = weatherData.highTemp;
+            tripData.lowTemp = weatherData.lowTemp;
+            return getImage(city);
+        }).
+        then((imageURL) => {
+            tripData.imageURL = imageURL;
+            postData(
+                '/add',
+                {
+                    countryName: tripData.country,
+                    weather: tripData.weatherDescription,
+                    highTemp: tripData.highTemp,
+                    lowTemp: tripData.lowTemp,
+                    image: tripData.imageURL
+                }
+            );
+            saveTripData(tripData);
+            updateUI(tripData);
+            clearForm();
+        }).
+        catch((error) => console.log(
+            'Error:',
+            error
+        ));
+};
 
 export { performAction, postData };

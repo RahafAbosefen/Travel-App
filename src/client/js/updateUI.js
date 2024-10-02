@@ -1,6 +1,7 @@
 import { deleteTrip } from "./deleteTrip";
+
 // Function to update the user interface
-function updateUI(tripData) {
+const updateUI = (tripData) => {
     const tripResults = document.getElementById('trip-results');
     const tripCard = document.createElement('div');
     tripCard.classList.add('trip-card');
@@ -13,15 +14,16 @@ function updateUI(tripData) {
         <h1>My Trip To: ${tripData.city}, ${tripData.country}</h1>
         <h1>Departing: ${new Date(tripData.tripDateInput).toLocaleDateString('en-GB')}</h1>
         </div>
-        <p>${tripData.city}, ${tripData.country} is in ${tripData.daysUntilTrip} days away.</p>
-        <p>${tripData.weatherDescription} Throughout The day.</p>
-        <p>High-${tripData.highTemp} °C , Low-${tripData.lowTemp} °C</p>
+        <p>${tripData.city}, ${tripData.country} is ${tripData.daysUntilTrip} days away.</p>
+        <p>${tripData.weatherDescription} Throughout the day.</p>
+        <p>High - ${tripData.highTemp} °C , Low - ${tripData.lowTemp} °C</p>
         <button class="delete-btn">Delete Trip</button>
         </div>
-        `;
+    `;
     tripResults.appendChild(tripCard);
     // Add event listener to the delete button
     const deleteButton = tripCard.querySelector('.delete-btn');
     deleteButton.addEventListener('click', () => deleteTrip(tripCard, tripData));
-}
+};
+
 export { updateUI };

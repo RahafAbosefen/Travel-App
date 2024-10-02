@@ -1,27 +1,27 @@
 import { updateUI } from "./updateUI";
 
 // Function to save the trip data in local storage
-function saveTripData(tripData) {
-    let storedTrips = JSON.parse(localStorage.getItem('tripData')) || [];
-    // Push the new trip data into the stored trips array
+const saveTripData = (tripData) => {
+    const storedTrips = JSON.parse(localStorage.getItem('tripData')) || [];
     storedTrips.push(tripData);
-    // Save the updated array back to Local Storage
-    localStorage.setItem('tripData', JSON.stringify(storedTrips));
-}
+    localStorage.setItem(
+        'tripData',
+        JSON.stringify(storedTrips)
+    );
+};
 
-/* Load saved trip data from local storage */
-function loadSavedTrip() {
+// Load saved trip data from local storage 
+const loadSavedTrip = () => {
     try {
-        let storedTripData = JSON.parse(localStorage.getItem('tripData')) || [];
-        // Sort the trips by daysUntilTrip (ascending order)
-        storedTripData = storedTripData.sort((a, b) => a.daysUntilTrip - b.daysUntilTrip);
-        // Update UI for each trip
-        storedTripData.forEach(tripData => {
-            updateUI(tripData);
-        });
+        const storedTripData = JSON.parse(localStorage.getItem('tripData')) || [];
+        storedTripData.sort((daya, dayb) => daya.daysUntilTrip - dayb.daysUntilTrip);
+        storedTripData.forEach(updateUI);
     } catch (error) {
-        console.error("Error loading saved trips from local storage:", error);
+        console.error(
+            "Error loading saved trips from local storage:",
+            error
+        );
     }
-}
+};
 
 export { saveTripData, loadSavedTrip };

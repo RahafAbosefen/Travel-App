@@ -1,12 +1,12 @@
-//js files
-import { performAction } from './js/app';
+// JS files
+import { loadSavedTrip, saveTripData } from './js/tripStorage';
+import { performAction, postData } from './js/app';
+import { cutDown } from './js/cutDown';
+import { deleteTrip } from './js/deleteTrip';
 import { getCoordinates } from './js/geonames';
 import { getFutureWeather } from './js/weatherbit';
-import { cutDwon } from './js/cutDown';
-import { postData } from './js/app';
 import { updateUI } from './js/updateUI';
-import { saveTripData, loadSavedTrip } from './js/tripStorage';
-import { deleteTrip } from './js/deleteTrip';
+
 
 import logo from './media/logo.png';
 
@@ -17,19 +17,19 @@ document.getElementById('generate').addEventListener('click', performAction);
 
 // Load saved trip data on page load
 document.addEventListener('DOMContentLoaded', loadSavedTrip);
-//sacc styles
+// Sacc styles
 import './styles/resets.scss'
 import './styles/base.scss'
 import './styles/footer.scss'
 import './styles/form.scss'
 import './styles/header.scss'
 
-// export js files 
+// Export js files 
 export {
     performAction,
     getCoordinates,
     getFutureWeather,
-    cutDwon,
+    cutDown,
     postData,
     updateUI,
     saveTripData,
