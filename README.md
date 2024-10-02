@@ -2,7 +2,43 @@
 
 ## Project Description
 
-The Travel App helps users plan trips by providing real-time or predicted weather forecasts and images for their destination. Users simply enter their location and departure date, and the app integrates data from multiple APIs to deliver relevant travel information.
+The Travel App is designed to help users plan their trips by providing real-time or predicted weather forecasts and relevant images for their chosen destination. The app leverages data from multiple APIs, allowing users to enter a location and departure date to retrieve accurate and timely travel information.
+
+## Motivation
+
+Travel planning can be complicated, especially when it comes to predicting weather at your destination. This project was created to simplify the process by integrating key information in one place. The motivation behind this project was to create a user-friendly application that helps travelers stay informed and make decisions based on real-time weather data.
+
+## Screenshots
+
+### 1. Homepage
+
+This is an example of the app's homepage with the input fields for destination and date.
+
+![Travel App Home Page](./screenshots/homepage.png)
+
+### 2. Weather Forecast
+
+After entering a location and date, this is how the app displays the weather forecast along with an image of the destination.
+
+![Weather Forecast](./screenshots/forecast.png)
+
+## Tech/Framework Used
+  - Node.js: For server-side operations.
+  - Express.js: As the web framework.
+  - Webpack: For bundling and optimizing the assets.
+  - Sass (SCSS): For styling.
+  - HTML5 & CSS3: For structuring and styling the web pages.
+  - JavaScript (ES6): For functionality and interactivity.
+  - APIs Used:
+    - GeoNames: For fetching geographic data.
+    - Weatherbit: For real-time and forecast weather data.
+    - Pixabay: For fetching images related to the destination.
+
+## Features
+  - Get weather forecasts for future trips.
+  - Retrieve images of the destination to give users a visual feel of the     location.
+  - Store and view previously planned trips using local storage.
+  - Responsive design for both desktop and mobile use.
 
 ## Installation
 
@@ -25,32 +61,39 @@ npm run start
 ```
 4. Open your browser and navigate to `http://localhost:8080` .
 
+## Tests
 
-## Usage
+Unit tests are written to ensure core functionalities of the app. Testing is implemented using Jest. To run tests, use the following command:
+- `npm run test`
 
-To use the Travel App:
-1. Enter your destination and departure date in the input fields.
-2. Press the Generate button.
-3. The app will display the weather forecast and an image of your destination below.
-4. If the input is invalid, an error message will be shown. The app is fully responsive across devices.
+## How to Use
+
+1. Enter the destination city or location.
+2. Select the departure date.
+3. Click on the Save Trip button.
+4. View the weather forecast and an image of your destination displayed below the input fields.
 
 ## Project Structure
 
 - Travel App 
   - __test__/
   - node_modules/
+  - dist/
   - src/
     - client/
     - server/
-  - dist/
   - .babelrc
   - webpack.dev.js
   - webpack.prod.js
-  - .env
   - .gitignore
+  - service-worker
   - package-lock.json
   - package.json
   - README.md
+
+## Credits
+
+This project was built using starter code from Udacity. Special thanks to the developers and maintainers of the GeoNames, Weatherbit, and Pixabay APIs for making this project possible.
 
 ## Author
 
