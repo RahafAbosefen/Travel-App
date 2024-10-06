@@ -90,7 +90,8 @@ Unit tests are written to ensure core functionalities of the app. Testing is imp
   - package-lock.json
   - package.json
   - README.md
-
+## Node.js Version
+   - Node.js version: v18.14.0
 ## Credits
 
 This project was built using starter code from Udacity. Special thanks to the developers and maintainers of the GeoNames, Weatherbit, and Pixabay APIs for making this project possible.
