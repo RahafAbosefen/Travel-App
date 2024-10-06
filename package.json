@@ -34,6 +34,9 @@
     "webpack-dev-server": "^5.1.0",
     "workbox-webpack-plugin": "^6.6.0"
   },
+  "engines": {
+    "node": ">=18.14.0"
+  },
   "jest": {
     "testEnvironment": "node",
     "coveragePathIgnorePatterns": [
