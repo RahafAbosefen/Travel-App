@@ -1,0 +1,62 @@
+.trip-results {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    width: 80%;
+}
+
+.trip-card {
+    flex-direction: column;
+    display: flex;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 28%;
+    margin: 1rem;
+
+    .trip-image {
+        width: 100%;
+
+        img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+    }
+
+    .trip-details {
+        width: 100%;
+        padding: 1.5rem;
+
+        .bold-text {
+            font-weight: bold;
+        }
+
+        h3 {
+            margin-top: 0;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        p {
+            margin: 0.5rem 0;
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .delete-btn {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            width: 50%;
+            margin: 1rem 0;
+        }
+
+        .delete-btn:hover {
+            background-color: #ff1a1a;
+        }
+    }
+}

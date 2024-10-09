@@ -2,12 +2,12 @@ header {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: inherit;
+    text-align: center;
+    padding: 1rem;
     align-items: center;
     color: #2b4a53;
-    position: fixed;
-    background-color: #19bcff;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    font-size: 2rem;
+    font-weight: 700;
 
     .logo {
         width: 200px;

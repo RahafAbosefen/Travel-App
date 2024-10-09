@@ -1,3 +1,10 @@
+/**
+ * @description Deletes a trip from the UI and local storage. 
+ *              Removes the specified trip card from the interface 
+ *              and updates local storage by filtering out the deleted trip.
+ * @param {HTMLElement} tripCard - The trip card element to be removed from the UI.
+ * @param {Object} tripData - The trip data object containing details of the trip to delete.
+ */
 const deleteTrip = (tripCard, tripData) => {
 
     // Remove the card from the UI
@@ -16,4 +23,5 @@ const deleteTrip = (tripCard, tripData) => {
 
 };
 
+// Export deleteTrip
 export { deleteTrip };

@@ -1,6 +1,13 @@
 import { deleteTrip } from "./deleteTrip";
 
-// Function to update the user interface
+/**
+ * @description Updates the user interface by creating a trip card 
+ *              with details of the specified trip and appending it 
+ *              to the trip results section. Adds a delete button to 
+ *              remove the trip from the UI.
+ * @param {Object} tripData - The trip data object containing details 
+ *                            such as city, country, weather, and dates.
+ */
 const updateUI = (tripData) => {
     const tripResults = document.getElementById('trip-results');
     const tripCard = document.createElement('div');
@@ -26,4 +33,5 @@ const updateUI = (tripData) => {
     deleteButton.addEventListener('click', () => deleteTrip(tripCard, tripData));
 };
 
+// Export updateUI
 export { updateUI };

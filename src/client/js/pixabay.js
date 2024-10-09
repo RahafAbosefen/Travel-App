@@ -1,8 +1,13 @@
-// Personal API Key for Pixabay API
-const pixabayApiKey = "45804559-a7e100c007ed36747e031c5ec";
-const pixabayBaseURL = "https://pixabay.com/api/?key=";
-
-const getImage = async (city) => {
+/**
+ * @description Fetches an image URL for a specified city using the Pixabay API.
+ * Returns the URL of the first image found or a fallback image if no results are found.
+ * @param {string} city - The city name for which to fetch an image.
+ * @param {string} pixabayApiKey - The API key for authenticating requests to the Pixabay API.
+ * @param {string} pixabayBaseURL - The base URL for the Pixabay API.
+ * @returns {Promise<string>} A promise that resolves to the image URL or a fallback image.
+ * @throws {Error} If there's an issue with the API request.
+ */
+const getImage = async (city, pixabayApiKey, pixabayBaseURL) => {
     try {
         const res = await fetch(`${pixabayBaseURL}${pixabayApiKey}&q=${city}&image_type=photo`);
         const data = await res.json();
@@ -20,4 +25,5 @@ const getImage = async (city) => {
     }
 };
 
+// Export getImage
 export { getImage };
