@@ -1,3 +1,8 @@
+/**
+ * @description Calculates the number of days until a specified trip date.
+ * @param {string|Date} date - The trip date, either as a string or a Date object.
+ * @returns {number} The number of days remaining until the trip.
+ */
 const cutDown = (date) => {
 
     const tripDate = new Date(date);
@@ -9,5 +14,5 @@ const cutDown = (date) => {
     return daysUntilTrip;
 
 };
-
+// Export cutDown
 export { cutDown };

@@ -5,52 +5,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script type="text/javascript" src="../../../dist/main.js"></script>
 </head>
 
 <body>
 
-    <header>
-        <img id="logo" alt="logo" class="logo">
-        <h1 class="navigation">Travel Planner</h1>
+    <header class="header">
+        <img id="logo" alt="Travel Planner Logo" class="logo">
+        <h1 class="app-title">Travel Planner</h1>
     </header>
-    <main class="container">
-        <section class="form-section">
-            <form id="trip-form">
-                <div class="form-group">
-                    <label for="place">My Trip to:</label>
-                    <input type="text" id="place" placeholder="Enter location here">
-                </div>
-                <div class="form-group">
-                    <label for="date">Departing:</label>
-                    <input type="date" id="date" placeholder="MM/DD/YYYY">
-                </div>
-                <button id="generate" type="submit">Save Trip</button>
-            </form>
-        </section>
+
+    <main class="main-container">
+        <div class="container">
+            <section class="form-section">
+                <h2>Plan Your Next Trip</h2>
+                <form id="trip-form">
+                    <div class="form-group">
+                        <label for="place">My Trip to:</label>
+                        <input type="text" id="place" name="place" placeholder="Enter location here" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Departing:</label>
+                        <input type="date" id="date" name="date" placeholder="MM/DD/YYYY" required>
+                    </div>
+                    <button id="save-trip" type="submit">Save Trip</button>
+                </form>
+            </section>
+        </div>
+        <h2><strong>My Trips:</strong></h2>
         <section id="trip-results" class="trip-results">
-            <h1><strong>My Trips:</strong></h1>
-            <!-- Trip cards will be inserted here -->
+            <!-- Trip cards will be dynamically inserted here -->
         </section>
+
     </main>
 
-    <footer>
-        <p>Discover the best travel destinations and plan your perfect trip with TravelApp.</p>
+    <footer class="footer box">
+        <div class="footer-container">
+            <p id="Copyright">Copyright © 2024. All rights reserved.</p>
+            <div class="social-media">
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+        </div>
     </footer>
+
     <script>
         // Check that service workers are supported
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('/service-worker.js')
                     .then((reg) => {
-                        console.log('Service Worker registered! 😎', reg);
+                        console.log('Service Worker registered successfully!', reg);
                     })
                     .catch((err) => {
-                        console.log('Service Worker registration failed 😥', err);
+                        console.error('Service Worker registration failed:', err);
                     });
             });
         }
     </script>
+
 </body>
 
 </html>

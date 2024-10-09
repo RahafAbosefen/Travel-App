@@ -1,4 +1,4 @@
-import { cutDwon } from "../src/client/js/cutDown.js";
+import { cutDown } from "../src/client/js/cutDown.js";
 
 describe("Testing the cutDwon functionality", () => {
     test("Testing the cutDwon() function", () => {
@@ -6,9 +6,9 @@ describe("Testing the cutDwon functionality", () => {
         const futureDate = new Date(today);
         futureDate.setDate(today.getDate() + 6);
 
-        const daysUntilTrip = cutDwon(futureDate.toISOString());
+        const daysUntilTrip = cutDown(futureDate.toISOString());
 
-        expect(cutDwon).toBeDefined();  
+        expect(cutDown).toBeDefined();
         expect(daysUntilTrip).toBe(6);
     });
 });

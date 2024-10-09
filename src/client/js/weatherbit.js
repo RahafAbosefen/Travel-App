@@ -1,9 +1,17 @@
-// Personal API Key for weatherbit API
-const weatherApiKey = "5f1d68e7c6b74cf7b06c7322a70514c2";
-const weatherBaseURL = "https://api.weatherbit.io/v2.0/forecast/daily?lat=";
+/**
+ * @description Fetches future weather data for a location using the Weatherbit API.
+ * Returns the weather description, high, and low temperatures for the specified trip day.
+ * @param {number} latitude - Latitude of the location.
+ * @param {number} longitude - Longitude of the location.
+ * @param {number} daysUntilTrip - Days until the trip (0 for today, 1 for tomorrow, etc.).
+ * @param {string} weatherApiKey - API key for the Weatherbit API.
+ * @param {string} weatherBaseURL - Base URL for the Weatherbit API.
+ * @returns {Promise<{description: string, highTemp: number, lowTemp: number}>} 
+ *          Resolves to an object with weather data.
+ * @throws {Error} If fetching weather data fails or if no forecast is available.
+ */
 
-// Function to GET future weather data
-const getFutureWeather = async (latitude, longitude, daysUntilTrip) => {
+const getFutureWeather = async (latitude, longitude, daysUntilTrip, weatherApiKey, weatherBaseURL) => {
     try {
         const res = await fetch(`${weatherBaseURL}${latitude}&lon=${longitude}&key=${weatherApiKey}&units=M&days=16`);
         const forecastData = await res.json();
@@ -27,4 +35,5 @@ const getFutureWeather = async (latitude, longitude, daysUntilTrip) => {
     }
 };
 
+// Export getFutureWeather
 export { getFutureWeather };

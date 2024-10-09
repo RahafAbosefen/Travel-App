@@ -1,38 +1,25 @@
-// JS files
-import { loadSavedTrip, saveTripData } from './js/tripStorage';
-import { performAction, postData } from './js/app';
-import { cutDown } from './js/cutDown';
-import { deleteTrip } from './js/deleteTrip';
-import { getCoordinates } from './js/geonames';
-import { getFutureWeather } from './js/weatherbit';
-import { updateUI } from './js/updateUI';
+// Importing necessary functions from various modules
+import { loadSavedTrip } from './js/tripStorage';
+import { performAction } from './js/app';
 
 
+// Importing logo for use in the HTML
 import logo from './media/logo.png';
 
+// Setting the logo image source
 document.getElementById('logo').src = logo;
 
-// Event listener to add function to existing HTML DOM element
-document.getElementById('generate').addEventListener('click', performAction);
+// Adding event listener to the generate button
+document.getElementById('save-trip').addEventListener('click', performAction);
 
-// Load saved trip data on page load
+// Loading saved trip data when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', loadSavedTrip);
-// Sacc styles
-import './styles/resets.scss'
-import './styles/base.scss'
-import './styles/footer.scss'
-import './styles/form.scss'
-import './styles/header.scss'
 
-// Export js files 
+// Importing SCSS styles for the application
+import './styles/main.scss';
+
+// Exporting functions for use in other modules
 export {
     performAction,
-    getCoordinates,
-    getFutureWeather,
-    cutDown,
-    postData,
-    updateUI,
-    saveTripData,
-    loadSavedTrip,
-    deleteTrip
-}
+    loadSavedTrip
+};

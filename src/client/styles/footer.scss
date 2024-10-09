@@ -1,11 +1,25 @@
-footer {
-    padding: 1em;
-    text-align: center;
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding:2rem;
     color: #2b4a53;
     background-color: #19bcff;
+}
 
-    p {
-        margin: 0;
-        font-size: 0.9em;
-    }
+.footer-logo img {
+    width: 6.25rem;
+    margin-bottom: 0.625rem;
+}
+
+.social-media a {
+    color: #2b4a53;
+    margin: 0 0.625rem;
+    text-decoration: none;
+    font-size: 1.25rem;
+    padding: 0.625rem;
+}
+
+.social-media a:hover {
+    color: #f0f0f0;
 }
